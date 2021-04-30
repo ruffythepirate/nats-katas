@@ -1,0 +1,16 @@
+version: '2'
+services:
+  requester:
+    depends_on:
+      - responder
+    build: requester
+    image: ruffythepirate/nats-kata-requester
+  responder:
+    depends_on:
+      - nats-server
+    build: responder
+    image: ruffythepirate/nats-kata-responder:test
+  nats-server:
+    image: nats:latest
+    expose:
+      - "4222"
